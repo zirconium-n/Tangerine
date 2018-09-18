@@ -2,7 +2,7 @@
 
 namespace sgk {
 	namespace general {
-		Player::Player(input_ptr input) :
+		Player::Player(InputPtr input) :
 			input_(input)
 		{}
 
@@ -33,6 +33,11 @@ namespace sgk {
 					iter++;
 				}
 			}
+			return;
+		}
+
+		void Player::apply(const StatusEffect<Player>& effect){
+			status_effects.push_back(effect);
 			return;
 		}
 	}

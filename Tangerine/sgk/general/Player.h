@@ -11,9 +11,9 @@ namespace sgk {
 	namespace general {
 		class Player {
 		public:
-			using input_ptr = std::shared_ptr<utils::intInput>;
+			using InputPtr = std::shared_ptr<utils::intInput>;
 
-			explicit Player(input_ptr input);
+			explicit Player(InputPtr input);
 
 			int base(const std::string& attr) const;
 			int& base(const std::string& attr);
@@ -21,8 +21,10 @@ namespace sgk {
 
 			void react(const std::string& event_name);
 
+			void apply(const StatusEffect<Player>& effect);
+
 		private:
-			input_ptr input_;
+			InputPtr input_;
 
 			std::list<StatusEffect<Player>> status_effects;
 			std::map<std::string, int> attr_base;

@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="sgk\general\Player.h" />
     <ClInclude Include="sgk\general\StatusEffect.h" />
+    <ClInclude Include="sgk\network\websocket.h" />
     <ClInclude Include="sgk\utils\Dice.h" />
     <ClInclude Include="sgk\utils\IOChannel.h" />
   </ItemGroup>
