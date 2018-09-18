@@ -2,7 +2,7 @@
 #include "StatusEffect.h"
 
 namespace sgk {
-	namespace tangerine {
+	namespace general {
 		template<typename Owner_T>
 		StatusEffect<Owner_T>::StatusEffect():
 			alive_(true)

@@ -13,22 +13,37 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\utils">
+    <Filter Include="头文件\sgk">
+      <UniqueIdentifier>{26081e26-7f43-401a-9738-fd3a5ccb2488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\sgk\utils">
       <UniqueIdentifier>{c5b275ee-4d15-4264-a3b8-73635b7abd40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\sgk\general">
+      <UniqueIdentifier>{4d7a2ad0-1c8a-45aa-be35-fa6ea6e5e690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\sgk">
+      <UniqueIdentifier>{3ddf9323-d0ca-433f-8320-86efb74de797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\sgk\general">
+      <UniqueIdentifier>{131d1677-5070-46eb-bde7-f1134a4b3ef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\sgk\utils">
+      <UniqueIdentifier>{4b203c7f-2d5f-4a1b-9d08-faaf70ed0c63}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OJMap.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="sgk\general\Game.cpp">
+      <Filter>源文件\sgk\general</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="sgk\general\Player.cpp">
+      <Filter>源文件\sgk\general</Filter>
     </ClCompile>
-    <ClCompile Include="StatusEffect.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="sgk\general\StatusEffect.cpp">
+      <Filter>源文件\sgk\general</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -37,17 +52,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="utils\IOChannel.h">
-      <Filter>头文件\utils</Filter>
+    <ClInclude Include="sgk\general\StatusEffect.h">
+      <Filter>头文件\sgk\general</Filter>
     </ClInclude>
-    <ClInclude Include="utils\Dice.h">
-      <Filter>头文件\utils</Filter>
+    <ClInclude Include="sgk\utils\Dice.h">
+      <Filter>头文件\sgk\utils</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="sgk\utils\IOChannel.h">
+      <Filter>头文件\sgk\utils</Filter>
     </ClInclude>
-    <ClInclude Include="StatusEffect.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="sgk\general\Player.h">
+      <Filter>头文件\sgk\general</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

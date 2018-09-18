@@ -4,7 +4,7 @@
 #include <functional>
 
 namespace sgk {
-	namespace tangerine {
+	namespace general {
 		template<typename Owner_T>
 		class StatusEffect {
 		public:
@@ -21,10 +21,8 @@ namespace sgk {
 			[[nodiscard]] bool alive() const;
 
 		protected:
-			//TODO: rename
 			virtual void apply_(const Owner_T& owner, const std::string& attr, int& value) const;
 
-			//TODO: rename
 			//maybe input Event not string
 			//returns alive
 			virtual bool react_(Owner_T& owner, const std::string& event_name);

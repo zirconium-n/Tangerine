@@ -3,17 +3,14 @@
 #include <map>
 #include <string>
 
-#include "utils/IOChannel.h"
-#include "utils/Dice.h"
 #include "Player.h"
 
 namespace sgk {
-	namespace tangerine {
-		class OrangeGame {
-			using Dice = sgk::utils::Dice;
+	namespace general {
+		class Game {
 
 		public:
-			OrangeGame():
+			Game():
 				player_count{4},
 				players{player_count}
 			{}
@@ -27,11 +24,8 @@ namespace sgk {
 
 			}
 
-
-
 			const int player_count;
 			std::vector<Player> players;
-			Dice dice;
 		};
 
 	}

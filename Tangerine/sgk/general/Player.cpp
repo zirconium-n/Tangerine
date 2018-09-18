@@ -1,16 +1,9 @@
 #include "Player.h"
 
 namespace sgk {
-	namespace tangerine {
-		Player::Player(const CharactorDefinition& char_def, input_ptr input) :
-			input_(input),
-			char_def_(char_def),
-			attr_base{
-				{"hp", char_def.hp_max},
-				{"hp_max", char_def.hp_max},
-				{"stars", 0},
-				{"wins", 0},
-		}
+	namespace general {
+		Player::Player(input_ptr input) :
+			input_(input)
 		{}
 
 		int Player::base(const std::string& key) const { 

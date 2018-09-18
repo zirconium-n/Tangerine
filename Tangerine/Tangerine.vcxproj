@@ -70,7 +70,18 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -120,19 +131,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="OJMap.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="StatusEffect.cpp" />
+    <ClCompile Include="sgk\general\Game.cpp" />
+    <ClCompile Include="sgk\general\Player.cpp" />
+    <ClCompile Include="sgk\general\StatusEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="field_clover.fld" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="StatusEffect.h" />
-    <ClInclude Include="utils\Dice.h" />
-    <ClInclude Include="utils\IOChannel.h" />
+    <ClInclude Include="sgk\general\Player.h" />
+    <ClInclude Include="sgk\general\StatusEffect.h" />
+    <ClInclude Include="sgk\utils\Dice.h" />
+    <ClInclude Include="sgk\utils\IOChannel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
