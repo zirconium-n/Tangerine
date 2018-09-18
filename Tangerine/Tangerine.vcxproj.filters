@@ -24,6 +24,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="field_clover.fld">
@@ -36,6 +39,9 @@
     </ClInclude>
     <ClInclude Include="utils\Dice.h">
       <Filter>头文件\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

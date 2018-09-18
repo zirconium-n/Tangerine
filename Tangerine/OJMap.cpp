@@ -7,7 +7,7 @@
 #include <fstream>
 
 namespace sgk {
-namespace oj {
+namespace tangerine {
 
 
 	struct Tile {

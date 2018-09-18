@@ -27,5 +27,7 @@ namespace sgk {
 
 			virtual void operator()(const T&) = 0;
 		};
+
+		
 	}
 }
