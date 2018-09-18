@@ -2,8 +2,10 @@
 #include <memory>
 #include <map>
 #include <vector>
+#include <list>
 
 #include "utils/IOChannel.h"
+#include "StatusEffect.h"
 
 namespace sgk {
 	namespace tangerine {
@@ -22,24 +24,23 @@ namespace sgk {
 			Card hyper;
 		};
 
-
-		class StatusEffect {
-
-
-		};
-
 		class Player {
 		public:
 			using input_ptr = std::shared_ptr<utils::intInput>;
 
 			explicit Player(const CharactorDefinition& char_def, input_ptr input);
 
-			int operator[](const std::string& key) const;
-			int& operator[](const std::string& key);
+			int base(const std::string& attr) const;
+			int& base(const std::string& attr);
+			int actual(const std::string& attr) const;
+
+			void react(const std::string& event_name);
 
 		private:
 			input_ptr input_;
-			std::vector<StatusEffect> status_effects;
+
+			//list?
+			std::list<StatusEffect<Player>> status_effects;
 			const CharactorDefinition char_def_;
 			std::map<std::string, int> attr_base;
 			std::vector<Card> hand;

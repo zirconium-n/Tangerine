@@ -123,12 +123,14 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="OJMap.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="StatusEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="field_clover.fld" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="StatusEffect.h" />
     <ClInclude Include="utils\Dice.h" />
     <ClInclude Include="utils\IOChannel.h" />
   </ItemGroup>
