@@ -120,15 +120,3 @@ namespace tangerine {
 	};
 }
 }
-
-
-int main() {
-	std::ifstream f{ "field_clover.fld" };
-	using sgk::tangerine::Map;
-	Map m{ 11, 11, f };
-	std::cout << m.toString();
-
-
-	system("pause");
-	return 0;
-}
