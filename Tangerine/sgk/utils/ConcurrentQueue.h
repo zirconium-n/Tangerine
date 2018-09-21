@@ -8,6 +8,36 @@ namespace sgk {
 		template<typename T>
 		class ConcurrentQueue {
 		public:
+			class Pusher {
+				friend class ConcurrentQueue<T>;
+
+				void push(const T& value) const {
+					cq_->push(value);
+					return;
+				}
+				void push(T&& value) const {
+					cq_->push(value);
+					return;
+				}
+
+				void operator()(const T& value) const{
+					this->push(value);
+					return;
+				}
+				void operator()(T&& value) const {
+					this->push(value);
+					return;
+				}
+
+			private: 
+				Pusher(ConcurrentQueue<T>* cq) :
+					cq_(cq) {};
+				ConcurrentQueue<T>* cq_;
+
+				//not safe. change later;
+			};
+
+
 			using queue_type = std::queue<T>;
 
 			ConcurrentQueue() = default;
@@ -44,6 +74,10 @@ namespace sgk {
 				q_.push(value);
 				cond_.notify_one();
 				return;
+			}
+
+			Pusher pusher() {
+				return { this };
 			}
 
 		private:
