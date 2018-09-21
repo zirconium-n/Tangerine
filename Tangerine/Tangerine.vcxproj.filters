@@ -34,6 +34,9 @@
     <Filter Include="头文件\sgk\network">
       <UniqueIdentifier>{7b0a7c67-21fe-41ec-9d50-530ef8145100}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\sgk\tangerine">
+      <UniqueIdentifier>{9aadfbdc-b5bb-4948-8730-b2c180c70a8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OJMap.cpp">
@@ -47,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="sgk\general\StatusEffect.cpp">
       <Filter>源文件\sgk\general</Filter>
+    </ClCompile>
+    <ClCompile Include="TangerineGame.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +75,15 @@
     </ClInclude>
     <ClInclude Include="sgk\network\websocket.h">
       <Filter>头文件\sgk\network</Filter>
+    </ClInclude>
+    <ClInclude Include="sgk\general\Game.h">
+      <Filter>头文件\sgk\general</Filter>
+    </ClInclude>
+    <ClInclude Include="sgk\tangerine\TangerinePlayer.h">
+      <Filter>头文件\sgk\tangerine</Filter>
+    </ClInclude>
+    <ClInclude Include="sgk\utils\ConcurrentQueue.h">
+      <Filter>头文件\sgk\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

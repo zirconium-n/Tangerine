@@ -135,14 +135,18 @@
     <ClCompile Include="sgk\general\Game.cpp" />
     <ClCompile Include="sgk\general\Player.cpp" />
     <ClCompile Include="sgk\general\StatusEffect.cpp" />
+    <ClCompile Include="TangerineGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="field_clover.fld" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sgk\general\Game.h" />
     <ClInclude Include="sgk\general\Player.h" />
     <ClInclude Include="sgk\general\StatusEffect.h" />
     <ClInclude Include="sgk\network\websocket.h" />
+    <ClInclude Include="sgk\tangerine\TangerinePlayer.h" />
+    <ClInclude Include="sgk\utils\ConcurrentQueue.h" />
     <ClInclude Include="sgk\utils\Dice.h" />
     <ClInclude Include="sgk\utils\IOChannel.h" />
   </ItemGroup>

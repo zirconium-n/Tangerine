@@ -3,17 +3,24 @@
 #include <map>
 #include <vector>
 #include <list>
+#include <cstddef>
 
-#include "sgk/utils/IOChannel.h"
-#include "StatusEffect.h"
+#include <sgk/general/StatusEffect.h>
+#include "Game.h"
+
 
 namespace sgk {
 	namespace general {
 		class Player {
 		public:
-			using InputPtr = std::shared_ptr<utils::intInput>;
+			Player(std::weak_ptr<Game> game, std::uint32_t id);
+			//screw abstraction. do this later
+			void connect();
+			
+			void requestInt(int upper_bound, std::string instruction = "");
 
-			explicit Player(InputPtr input);
+			std::uint32_t id() const;
+			std::weak_ptr<Game> game() const;
 
 			int base(const std::string& attr) const;
 			int& base(const std::string& attr);
@@ -24,10 +31,10 @@ namespace sgk {
 			void apply(const StatusEffect<Player>& effect);
 
 		private:
-			InputPtr input_;
-
 			std::list<StatusEffect<Player>> status_effects;
 			std::map<std::string, int> attr_base;
+			const std::weak_ptr<Game> game_;
+			const std::uint32_t id_;
 		};
 	}
 }
