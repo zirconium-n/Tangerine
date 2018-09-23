@@ -10,7 +10,7 @@ namespace sgk {
 		public:
 			class Pusher {
 				friend class ConcurrentQueue<T>;
-
+			public:
 				void push(const T& value) const {
 					cq_->push(value);
 					return;
@@ -41,26 +41,20 @@ namespace sgk {
 			using queue_type = std::queue<T>;
 
 			ConcurrentQueue() = default;
-			T& front() {
-				std::unique_lock<std::mutex> lock(mtx_);
-				while(q_.empty()) {
-					cond_.wait(lock);
-				}
-				return q_.front();
-			}
 
-			queue_type::size_type size(){
+			typename queue_type::size_type size(){
 				std::lock_guard<std::mutex>	lock(mtx_);
 				return q_.size();
 			}
 
-			void pop() {
+			T pop() {
 				std::unique_lock<std::mutex> lock(mtx_);
 				while (q_.empty()) {
 					cond_.wait(lock);
 				}
+				auto value = q_.front();
 				q_.pop();
-				return;
+				return value;
 			}
 
 			void push(const T& value) {

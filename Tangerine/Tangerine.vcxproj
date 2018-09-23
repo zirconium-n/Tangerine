@@ -72,15 +72,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <LibraryPath>D:\lib\lib\boost;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <LibraryPath>D:\lib\lib\boost;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <LibraryPath>D:\lib\lib\boost;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <LibraryPath>D:\lib\lib\boost;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -144,6 +148,7 @@
     <ClInclude Include="sgk\general\Game.h" />
     <ClInclude Include="sgk\general\Player.h" />
     <ClInclude Include="sgk\general\StatusEffect.h" />
+    <ClInclude Include="sgk\general\typedef.h" />
     <ClInclude Include="sgk\network\websocket.h" />
     <ClInclude Include="sgk\tangerine\TangerinePlayer.h" />
     <ClInclude Include="sgk\utils\ConcurrentQueue.h" />

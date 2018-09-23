@@ -85,5 +85,8 @@
     <ClInclude Include="sgk\utils\ConcurrentQueue.h">
       <Filter>头文件\sgk\utils</Filter>
     </ClInclude>
+    <ClInclude Include="sgk\general\typedef.h">
+      <Filter>头文件\sgk\general</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

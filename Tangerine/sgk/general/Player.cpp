@@ -1,22 +1,50 @@
 #include "Player.h"
+
 #include <iostream>
+#include <sgk/utils/ConcurrentQueue.h>
 
 namespace sgk {
 	namespace general {
-		Player::Player(std::weak_ptr<Game> game, std::uint32_t id)
-			:game_(game), id_(id) {};
-
-		void Player::connect() {
-			throw "notImplemented";
+		
+		Player::Player(ResponsePusher pusher, tcp::socket&& sock, std::uint32_t id)
+			:pusher_(pusher), ws_(std::move(sock)), id_(id) {
+			if (worker_.joinable()) {
+				return;
+			}
+			ws_.accept();
+			working_ = true;
+			worker_ = std::thread{
+				[this]() {this->work(); }
+			};
 		}
-
-		void Player::requestInt(int upper_bound, std::string instruction = "") {
-			int x = 0;
-			while (x <= 0 && x > upper_bound) {
-				std::cout << instruction;
-				std::cin >> x;
+	
+		void Player::work() {
+			while (true) {
+				auto request = request_queue_.pop();
+				ws_.text(request.dump().data());
+				
+				//read
+				auto msg_len = ws_.read(recv_buf_);
+				auto d = recv_buf_.data().data();
+				Response r;
+				r.id = id_;
+				auto resp = static_cast<const char*>(d);
+				nlohmann::json j{ resp, resp + msg_len };
+				r.data = j;
+				recv_buf_.consume(-1);
+				pusher_.push(std::move(r));
 			}
 
+			working_ = false;
+		}
+
+		void Player::request(const Request& msg) {
+			request_queue_.push(msg);
+		}
+
+		
+		id_type Player::id() const{
+			return id_;
 		}
 
 		int Player::base(const std::string& key) const { 
@@ -51,6 +79,11 @@ namespace sgk {
 
 		void Player::apply(const StatusEffect<Player>& effect){
 			status_effects.push_back(effect);
+			return;
+		}
+
+		void Player::response(const Json& data){
+			pusher_.push(Response{ this->id_, data });
 			return;
 		}
 	}

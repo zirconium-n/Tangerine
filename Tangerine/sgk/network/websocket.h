@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning(disable:4996)
 
 #include <cstdlib>
 #include <iostream>
@@ -12,13 +13,16 @@
 #include <boost/beast/websocket.hpp>
 #include <boost/asio/bind_executor.hpp>
 #include <boost/asio/ip/tcp.hpp>
+#include <boost/asio/io_context.hpp>
 
-using tcp = boost::asio::ip::tcp;
+namespace ip = boost::asio::ip;
+using tcp = ip::tcp;
 using error_code = boost::system::error_code;
 namespace ws = boost::beast::websocket;
 using Websocket = ws::stream<tcp::socket>;
+using IO_Context = boost::asio::io_context;
 
-void report_error(error_code ec, char const* what) {
+inline void report_error(error_code ec, char const* what) {
 	std::cerr << what << ": " << ec.message() << "\n";
 	return;
 }
