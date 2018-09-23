@@ -4,6 +4,7 @@
 #include <string>
 #include <chrono>
 #include <algorithm>
+#include <cassert>
 
 #include <sgk/general/Game.h>
 #include <sgk/general/Player.h>
@@ -13,9 +14,9 @@ namespace sgk {
 		Game::Game() :
 			ioc_{ 1 },
 			address_{ ip::make_address("127.0.0.1") },
-			port_{ 9090 },
+			port_{ 14258 },
 			acceptor_{ ioc_, {address_, port_} },
-			player_count_{ 2 },
+			player_count_{ 1 },
 			players_{ player_count_ },
 			responses{ player_count_ }
 		{
@@ -51,7 +52,7 @@ namespace sgk {
 				int sum = 0;
 				for (int i = 0; i < player_count_; i++) {
 					int v = responses[i]["value"];
-					sum += i;
+					sum += v;
 					req[i]["value"] = v;
 				}
 				broadcast(req);
@@ -60,8 +61,12 @@ namespace sgk {
 		}
 
 		void Game::broadcast(const nlohmann::json& data) {
+			Json pack = {
+				{"type", "update"},
+				{"data", data}
+			};
 			for (auto& player : players_) {
-				player->request(data);
+				player->request(pack);
 			}
 			return;
 		}

@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="field_clover.fld" />
+    <None Include="Tangerine.html" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sgk\general\Game.h" />

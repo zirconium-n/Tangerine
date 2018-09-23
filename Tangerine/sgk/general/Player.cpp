@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <sgk/utils/ConcurrentQueue.h>
+#include <gsl/gsl>
 
 namespace sgk {
 	namespace general {
@@ -12,6 +13,7 @@ namespace sgk {
 				return;
 			}
 			ws_.accept();
+			ws_.text();
 			working_ = true;
 			worker_ = std::thread{
 				[this]() {this->work(); }
@@ -21,18 +23,23 @@ namespace sgk {
 		void Player::work() {
 			while (true) {
 				auto request = request_queue_.pop();
-				ws_.text(request.dump().data());
+				std::cout << request.dump();
+				ws_.write(boost::asio::buffer(request.dump()));
+				auto consume = gsl::finally([&]() {recv_buf_.consume(-1); });
 				
-				//read
+				if (request["type"] == "update") {
+					continue;
+				}
+
 				auto msg_len = ws_.read(recv_buf_);
 				auto d = recv_buf_.data().data();
 				Response r;
 				r.id = id_;
 				auto resp = static_cast<const char*>(d);
-				nlohmann::json j{ resp, resp + msg_len };
-				r.data = j;
-				recv_buf_.consume(-1);
-				pusher_.push(std::move(r));
+				auto str = std::string{ resp, resp + msg_len };
+				r.data = Json::parse(str);
+				std::cout << r.data.dump(4);
+				pusher_.push(r);
 			}
 
 			working_ = false;

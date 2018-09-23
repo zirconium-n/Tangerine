@@ -59,6 +59,9 @@
     <None Include="field_clover.fld">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="Tangerine.html">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sgk\general\StatusEffect.h">

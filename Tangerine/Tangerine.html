@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<title> Tangerine v0.0.1 made by sgk </title>
+<html>
+<body>
+    <p id="request"></p>
+    <button onclick="response(1)">1</button>
+    <button onclick="response(2)">2</button>
+    <button onclick="response(3)">3</button>
+    <script>
+        state = 1;
+
+        var ws = new WebSocket('ws://localhost:14258');
+        ws.onmessage = function (e) {
+            console.log(e.data);
+            state = 2;
+        };
+        
+        r = { "value": -1 };
+        function response(i) {
+            if (state != 2)
+                return;
+            state = 1;
+            r.value = i;
+            ws.send(JSON.stringify(r));
+        }
+
+    </script>
+</body>
+</html>
