@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <nlohmann/json.hpp>
 
 namespace sgk {
 namespace tangerine {
@@ -35,9 +36,6 @@ namespace tangerine {
 			Heal_2 = 28,
 
 		};
-		static char type_to_char(Type t){
-			return " oCedbpwDBP.......K.EmMvVsihH"[(std::uint32_t)t];
-		}
 
 		Type type : 32;
 
@@ -53,9 +51,13 @@ namespace tangerine {
 			unsigned padding : 24;
 		} linking;
 
+		std::uint32_t linking_packed() const {
+			return *reinterpret_cast<const std::uint32_t*>(&linking);
+		}
 	};
 
 	static_assert(sizeof(Tile) == 8, "size of Tile is not 8");
+	static_assert(sizeof(Tile::Linking) == sizeof(std::uint32_t), "size of Linking is not 4");
 
 	class Map {
 	public:
@@ -83,7 +85,6 @@ namespace tangerine {
 			}
 		}
 
-		[[nodiscard]]
 		const Tile& tile(int x, int y) const {
 			if (x < 0 || x >= width_ ||
 				y < 0 || y >= height_) {
@@ -92,7 +93,6 @@ namespace tangerine {
 			return tiles_[y * width_ + x];
 		}
 
-		[[nodiscard]]
 		Tile& tile(int x, int y)  {
 			if (x < 0 || x >= width_ ||
 				y < 0 || y >= height_) {
@@ -101,16 +101,12 @@ namespace tangerine {
 			return tiles_[y * width_ + x];
 		}
 
-		std::string toString() const{
-			std::stringstream ss;
-			ss << "\n";
-			for (int y = 0; y < height_; y++) {
-				for (int x = 0; x < width_; x++) {
-					ss << Tile::type_to_char(tile(x, y).type);
-				}
-				ss << "\n";
-			}
-			return ss.str();
+		int width() const {
+			return width_;
+		}
+
+		int height() const {
+			return height_;
 		}
 
 	private:
@@ -119,4 +115,21 @@ namespace tangerine {
 		std::vector<Tile> tiles_;
 	};
 }
+}
+
+void to_json(nlohmann::json &j, const sgk::tangerine::Tile& t) {
+	j["type"] = t.type;
+	j["linking"] = t.linking_packed();
+	return;
+}
+
+void to_json(nlohmann::json &j, const sgk::tangerine::Map& m) {
+	using namespace sgk::tangerine;
+	j["height"] = m.height();
+	j["width"] = m.width();
+	for (int y = 0; y < m.height(); y++) {
+		for (int x = 0; x < m.width(); x++) {
+			j["tile"][y][x] = { m.tile(x, y) };
+		}
+	}
 }
