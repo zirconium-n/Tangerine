@@ -37,11 +37,11 @@
     <Filter Include="头文件\sgk\tangerine">
       <UniqueIdentifier>{9aadfbdc-b5bb-4948-8730-b2c180c70a8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\sgk\tangerine">
+      <UniqueIdentifier>{6c44851f-5003-40ae-9b68-3a61a6bad9b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OJMap.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="sgk\general\Game.cpp">
       <Filter>源文件\sgk\general</Filter>
     </ClCompile>
@@ -53,6 +53,9 @@
     </ClCompile>
     <ClCompile Include="TangerineGame.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sgk\tangerine\Map.cpp">
+      <Filter>源文件\sgk\tangerine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +93,9 @@
     </ClInclude>
     <ClInclude Include="sgk\general\typedef.h">
       <Filter>头文件\sgk\general</Filter>
+    </ClInclude>
+    <ClInclude Include="sgk\tangerine\Map.h">
+      <Filter>头文件\sgk\tangerine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

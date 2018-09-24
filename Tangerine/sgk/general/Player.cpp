@@ -26,10 +26,6 @@ namespace sgk {
 				std::cout << request.dump();
 				ws_.write(boost::asio::buffer(request.dump()));
 				auto consume = gsl::finally([&]() {recv_buf_.consume(-1); });
-				
-				if (request["type"] == "update") {
-					continue;
-				}
 
 				auto msg_len = ws_.read(recv_buf_);
 				auto d = recv_buf_.data().data();

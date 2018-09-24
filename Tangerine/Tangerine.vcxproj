@@ -135,10 +135,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="OJMap.cpp" />
     <ClCompile Include="sgk\general\Game.cpp" />
     <ClCompile Include="sgk\general\Player.cpp" />
     <ClCompile Include="sgk\general\StatusEffect.cpp" />
+    <ClCompile Include="sgk\tangerine\Map.cpp" />
     <ClCompile Include="TangerineGame.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +151,7 @@
     <ClInclude Include="sgk\general\StatusEffect.h" />
     <ClInclude Include="sgk\general\typedef.h" />
     <ClInclude Include="sgk\network\websocket.h" />
+    <ClInclude Include="sgk\tangerine\Map.h" />
     <ClInclude Include="sgk\tangerine\TangerinePlayer.h" />
     <ClInclude Include="sgk\utils\ConcurrentQueue.h" />
     <ClInclude Include="sgk\utils\Dice.h" />

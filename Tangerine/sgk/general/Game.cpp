@@ -5,9 +5,11 @@
 #include <chrono>
 #include <algorithm>
 #include <cassert>
+#include <fstream>
 
 #include <sgk/general/Game.h>
 #include <sgk/general/Player.h>
+#include <sgk/tangerine/Map.h>
 
 namespace sgk {
 	namespace general {
@@ -37,6 +39,13 @@ namespace sgk {
 		}
 
 		void Game::run() {
+			std::ifstream clover("field_clover.fld");
+			tangerine::Map clover_map{ 11, 11, clover };
+			Request map_data{
+				{"type", "map" },
+				{"data", {clover_map} } };
+			broadcast(map_data);
+
 			while (1) {
 				/********************/
 				//send request
@@ -55,18 +64,14 @@ namespace sgk {
 					sum += v;
 					req[i]["value"] = v;
 				}
-				broadcast(req);
+				broadcast({ {"type", "update"}, {"data", "req"} });
 			}
 			return;
 		}
 
 		void Game::broadcast(const nlohmann::json& data) {
-			Json pack = {
-				{"type", "update"},
-				{"data", data}
-			};
 			for (auto& player : players_) {
-				player->request(pack);
+				player->request(data);
 			}
 			return;
 		}

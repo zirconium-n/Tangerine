@@ -10,7 +10,6 @@
 namespace sgk {
 namespace tangerine {
 
-
 	struct Tile {
 		enum class Type {
 			Void = 0,
@@ -51,9 +50,7 @@ namespace tangerine {
 			unsigned padding : 24;
 		} linking;
 
-		std::uint32_t linking_packed() const {
-			return *reinterpret_cast<const std::uint32_t*>(&linking);
-		}
+		std::uint32_t linking_packed() const;
 	};
 
 	static_assert(sizeof(Tile) == 8, "size of Tile is not 8");
@@ -64,50 +61,15 @@ namespace tangerine {
 		//maybe provide resize
 		Map() = delete; 
 
-		Map(const int width,const int height) :
-			width_(width),
-			height_(height),
-			tiles_(width * height)
-		{
-			//should check w, h > 0
-		}
+		Map(const int width, const int height);
 
+		Map(const int width, const int height, std::istream& source);
 
-		Map(const int width,const int height, std::istream& source) :
-			width_(width),
-			height_(height),
-			tiles_(width * height) 
-		{
-			for (int y = 0; y < height; y++) {
-				for (int x = 0; x < width; x++) {
-					source.read(reinterpret_cast<char*>(&tile(x, y)), sizeof(Tile));
-				}
-			}
-		}
+		const Tile& tile(int x, int y) const;
+		Tile& tile(int x, int y);
 
-		const Tile& tile(int x, int y) const {
-			if (x < 0 || x >= width_ ||
-				y < 0 || y >= height_) {
-				throw std::out_of_range{ "Tile out of map" };
-			}
-			return tiles_[y * width_ + x];
-		}
-
-		Tile& tile(int x, int y)  {
-			if (x < 0 || x >= width_ ||
-				y < 0 || y >= height_) {
-				throw std::out_of_range{ "Tile out of map" };
-			}
-			return tiles_[y * width_ + x];
-		}
-
-		int width() const {
-			return width_;
-		}
-
-		int height() const {
-			return height_;
-		}
+		int width() const;
+		int height() const;
 
 	private:
 		int width_;
