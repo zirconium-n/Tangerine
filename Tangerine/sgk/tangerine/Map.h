@@ -76,9 +76,9 @@ namespace tangerine {
 		int height_;
 		std::vector<Tile> tiles_;
 	};
+
+	void to_json(nlohmann::json &j, const sgk::tangerine::Tile& t);
+
+	void to_json(nlohmann::json &j, const sgk::tangerine::Map& m);
 }
 }
-
-void to_json(nlohmann::json &j, const sgk::tangerine::Tile& t);
-
-void to_json(nlohmann::json &j, const sgk::tangerine::Map& m);
