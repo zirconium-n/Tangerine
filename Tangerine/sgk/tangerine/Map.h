@@ -79,19 +79,6 @@ namespace tangerine {
 }
 }
 
-void to_json(nlohmann::json &j, const sgk::tangerine::Tile& t) {
-	j["type"] = t.type;
-	j["linking"] = t.linking_packed();
-	return;
-}
+void to_json(nlohmann::json &j, const sgk::tangerine::Tile& t);
 
-void to_json(nlohmann::json &j, const sgk::tangerine::Map& m) {
-	using namespace sgk::tangerine;
-	j["height"] = m.height();
-	j["width"] = m.width();
-	for (int y = 0; y < m.height(); y++) {
-		for (int x = 0; x < m.width(); x++) {
-			j["tile"][y][x] = { m.tile(x, y) };
-		}
-	}
-}
+void to_json(nlohmann::json &j, const sgk::tangerine::Map& m);
